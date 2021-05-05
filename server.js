@@ -2,6 +2,7 @@ const path = require('path');
 const favicon = require('serve-favicon')
 const express = require('express');
 const app = express();
+const port = process.env.PORT||3000
 app.use(express.json("li"));
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
@@ -28,6 +29,6 @@ app.use("",flowers_meng);
 
 
 
-app.listen(5000, ()=>{console.log('5000 is the magic port');});
+app.listen(port, ()=>{console.log(port +'5000 is the magic port');});
 
 
