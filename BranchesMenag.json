@@ -1,0 +1,29 @@
+[
+    {
+        "status":1,
+        "branchnumber": "000001",
+        "name":"yaffo",
+        "address":"yaffo 56 jerusalem"
+        
+    },
+    {
+        "status":1,
+        "branchnumber": "000002",
+        "name":"ben yehuda",
+        "address":"ben yehuda 13 tel-aviv"
+    },
+    {
+        "status":1,
+        "branchnumber": "000003",
+        "name":"dizengoff",
+        "address":"dizengoff 100 tel-aviv"
+        
+    },
+    {
+        "status":1,
+        "branchnumber": "000004",
+        "name":"ramot",
+        "address":"golda 30 jerusalem"
+        
+    }
+]

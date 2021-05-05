@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html>
+   
+<head>
+    <title>Convert JSON Data to HTML Table</title>
+    <style>
+        th, td, p, input, h3 {
+            font:15px 'Segoe UI';
+        }
+        table, th, td {
+            border: solid 1px #ddd;
+            border-collapse: collapse;
+            padding: 2px 3px;
+            text-align: center;
+        }
+        th {
+            font-weight:bold;
+        }
+    </style>
+</head>
+
+<body onload="begin()">
+
+    <div id="container">
+    <button data-toggle="modal" data-target="#myModal2" class="user-buttons" onclick="checkPrioritys()">add user</button>
+    <button data-toggle="modal" data-target="#myModal4" class="user-buttons" onclick="makeList()" >update user</button>
+    <button class="user-buttons" data-toggle="modal" data-target="#myModal3">delete user</button>
+</div>
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog"  >
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Registration form</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="pb-modalreglog-form-reg">
+                        <div class="form-group">
+                            <div id="pb-modalreglog-progressbar"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Type</label>
+                            <div class="input-group pb-modalreglog-input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <select  class="form-control" id="inputType" onchange="branchClarity('')">
+                                    <option selected="selected" value="client">User</option>
+                                    <option value="worker">Worker</option>
+                                    <option value="menager">Menager</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Branch Number</label>
+                            <div class="input-group pb-modalreglog-input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <select  class="form-control" id="inputBranch" >
+                                    <option selected="selected">none</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">First Name</label>
+                            <div class="input-group pb-modalreglog-input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <input type="text" class="form-control" id="inputFirstName" placeholder="First Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Last Name</label>
+                            <div class="input-group pb-modalreglog-input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <input type="text" class="form-control" id="inputLastName" placeholder="Last Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Address</label>
+                            <div class="input-group pb-modalreglog-input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-map-marker"></span></span>
+                                <input type="text" class="form-control" id="inputAddress" placeholder="Address">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Phone Number</label>
+                            <div class="input-group pb-modalreglog-input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></span>
+                                <input type="text" class="form-control" id="inputPhoneNumber" placeholder="Phone Number">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <div class="input-group pb-modalreglog-input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                                <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <div class="input-group pb-modalreglog-input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                <input type="password" class="form-control" id="inputPws" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmpassword">Confirm password</label>
+                            <div class="input-group pb-modalreglog-input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                <input type="password" class="form-control" id="inputConfirmPws" placeholder="Confirm Password">
+                            </div>
+                        </div>
+  
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="addbtn" onclick="addNewClient()" >Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" onload="checkPrioritys()" >
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Update from</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="pb-modalreglog-form-reg">
+                        <div class="form-group">
+                            <div id="pb-modalreglog-progressbar"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Type</label>
+                            <div class="input-group pb-modalreglog-input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <select  class="form-control" id="inputType1" onchange="branchClarity('1')">
+                                    <option selected="selected">User</option>
+                                    <option>Worker</option>
+                                    <option>Menager</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Branch Number</label>
+                            <div class="input-group pb-modalreglog-input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <select  class="form-control" id="inputBranch1" >
+                                    <option selected="selected">none</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">status</label>
+                            <div class="input-group pb-modalreglog-input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <select  class="form-control" id="status1" >
+                                    <option selected="selected">none</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">First Name</label>
+                            <div class="input-group pb-modalreglog-input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <input type="text" class="form-control" id="inputFirstName1" placeholder="First Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Last Name</label>
+                            <div class="input-group pb-modalreglog-input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <input type="text" class="form-control" id="inputLastName1" placeholder="Last Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Address</label>
+                            <div class="input-group pb-modalreglog-input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-map-marker"></span></span>
+                                <input type="text" class="form-control" id="inputAddress1" placeholder="Address">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Phone Number</label>
+                            <div class="input-group pb-modalreglog-input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></span>
+                                <input type="text" class="form-control" id="inputPhoneNumber1" placeholder="Phone Number">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <div class="input-group pb-modalreglog-input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                                <div id="select_box_wrapper">
+                                <select type="email" class="form-control" id="inputEmail1" placeholder="Email" onchange="bringInfo()"></select>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <div class="input-group pb-modalreglog-input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                <input type="password" class="form-control" id="inputPws1" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmpassword">Confirm password</label>
+                            <div class="input-group pb-modalreglog-input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                <input type="password" class="form-control" id="inputConfirmPws1" placeholder="Confirm Password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmpassword">Is Activated?</label>
+                            
+                                <input type="checkbox"  class="form-control" id="inputActivated1">
+                            
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="updateUser()">update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" >
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel" >Delete user</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="pb-modalreglog-form-reg">
+                        <div class="form-group">
+                            <div id="pb-modalreglog-progressbar"></div>
+                        </div>
+                        
+                        
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <div class="input-group pb-modalreglog-input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                                <input type="email" class="form-control" id="inputEmail2" placeholder="Email">
+                            </div>
+                        </div>
+                        
+  
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="deleteUser()">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+
+
+<input type='button' class="user-buttons" style="margin: 10% 30% 5% 30%;  " onclick='tableFromJson()'
+       value='Open and Refresh Users Table' />
+
+<p id='showData'></p>
+
+<p id='msg'></p>
+
+<div id="loding" class="d-flex align-items-center" style="display:none">
+    <strong id="loding1" style="display:none">Loading...</strong>
+    <div id="loding2" class="spinner-border ml-auto" role="status" aria-hidden="true" style="display:none"></div>
+</div>
+
+<div class="loader11" id="loader11" >
+    <!-- <p>sdfgdfgsdfgsdfgsdfg</p>
+    <p>sdfgdfgsdfgsdfgsdfg</p>
+    <p>sdfgdfgsdfgsdfgsdfg</p>
+    <p>sdfgdfgsdfgsdfgsdfg</p>
+    <p>sdfgdfgsdfgsdfgsdfg</p>
+    <p>sdfgdfgsdfgsdfgsdfg</p>
+    <p>sdfgdfgsdfgsdfgsdfg</p>
+    <p>sdfgdfgsdfgsdfgsdfg</p>
+    <p>sdfgdfgsdfgsdfgsdfg</p>
+    <p>sdfgdfgsdfgsdfgsdfg</p>
+    <p>sdfgdfgsdfgsdfgsdfg</p> -->
+    <img src="loading.gif" alt="Loading..."/>
+</div>
+</body>
+<script type="text/javascript">
+
+</script>
+<script>
+   
+    // scroll down for ES6 features.
+
+    // using regular methods.
+
+
+    function tableFromJson() {
+        fetch("/users.json")
+            .then(response => response.json())
+            .then(json => {
+                // the json data. (you can change the values for output.)
+                list=json;
+                list=list.filter(item=>{ return item.status=="1"})
+                // Extract value from table header.
+                // ('Book ID', 'Book Name', 'Category' and 'Price')
+                var col = [];
+                for (var i = 0; i < list.length; i++) {
+                    for (var key in list[i]) {
+                        if (col.indexOf(key) === -1 &&(key=="type"||key=="first-name"||key=="last-name"||key=="address"||key=="phone-number"||key=="email"||key=="branchnumber")) {
+                            col.push(key);
+                        }
+                    }
+                }
+                // Create a table.
+                var table = document.createElement("table");
+                // Create table header row using the extracted headers above.
+                var tr = table.insertRow(-1);                   // table row.
+                for (var i = 0; i < col.length; i++) {
+                    var th = document.createElement("th");      // table header.
+                    th.innerHTML = col[i];
+                    tr.appendChild(th);
+                }
+                // add json data to the table as rows.
+                for (var i = 0; i < list.length; i++) {
+                    tr = table.insertRow(-1);
+                    for (var j = 0; j < col.length; j++) {
+                        var tabCell = tr.insertCell(-1);
+                        tabCell.innerHTML = list[i][col[j]];
+                    }
+                }
+                // Now, add the newly created table with json data, to a container.
+                var divShowData = document.getElementById('showData');
+                divShowData.innerHTML = "";
+                divShowData.appendChild(table);
+                document.getElementById('msg').innerHTML = '<br />You can later <a href="https://www.encodedna.com/javascript/dynamically-add-remove-rows-to-html-table-using-javascript-and-save-data.htm" target="_blank" style="color:#1464f4;text-decoration:none;">get all the data from table and save it in a database.</a>';
+            });
+    }
+    function validate (input) {
+        if(input == ''){
+                return false;
+            }       
+            return true;
+      
+    }
+
+    function isEmail(email) {
+  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  return regex.test(email);
+}
+ 
+    function addNewClient(){
+    loding()
+    // var loader=document.getElementById("loader11");
+    // loader.classList.add(" hidden");
+    
+    let el=document.getElementById("inputFirstName");
+    let fname= el.value;
+    el=document.getElementById("inputLastName");
+    let lname= el.value;
+    el=document.getElementById("inputAddress");
+    let address= el.value;
+    el=document.getElementById("inputPhoneNumber");
+    let phoneNumber= el.value;
+    el=document.getElementById("inputEmail");
+    let email= el.value;
+    el=document.getElementById("inputPws");
+    let password= el.value;
+    el=document.getElementById("inputConfirmPws");
+    let confirm= el.value;
+    el=document.getElementById("inputBranch");
+    let branch= el.value;
+    el=document.getElementById("inputType");
+    let inputType=el.value;
+    
+    if(validate(fname)&&validate(lname)&&validate(address)&&validate(phoneNumber)&&validate(inputType)&&validate(email)&&isEmail(email)&&validate(password)&&validate(confirm)&&password==confirm){
+        let data = JSON.parse(sessionStorage.getItem("user"));
+        let type = data['type'];
+        if(type=="menager"){
+            if(inputType=='User'){
+                const ans={fname,lname,address,phoneNumber,email,password,inputType,branch};
+                const options = {
+                    method: 'POST',
+                    headers: {
+                    'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(ans)
+                };
+                loading11();
+                fetch("/addNewClient",options) .then((response)=>response.json()) .then(response=>{
+                    if (response.data =="true"){
+                        alert(response.message);
+                        
+                    }
+                    else{
+                        alert(response.message);
+                    }
+                });
+            }
+            else{
+                if(validate(branch)){
+                    const ans={fname,lname,address,phoneNumber,email,password,inputType,branch};
+                    const options = {
+                        method: 'POST',
+                        headers: {
+                        'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(ans)
+                    };
+                    loading11();
+                    fetch("/addNewClient",options) .then((response)=>response.json()) .then(response=>{
+                        if (response.data =="true"){
+                            alert(response.message);
+                        }
+                        else{
+                            alert(response.message);
+                        }
+                    });
+                }
+                else{
+                    alert("one of the argumant wrong");
+                }
+            }
+            
+            
+        }
+        else{
+            if(type=="worker"){
+                if(inputType=="User"){
+                    const ans={fname,lname,address,phoneNumber,email,password,inputType};
+                    const options = {
+                        method: 'POST',
+                        headers: {
+                        'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(ans)
+                    };
+                    fetch("/addNewClient",options) .then((response)=>response.json()) .then(response=>{
+                        if (response.data =="true"){
+                            alert(response.message);
+                        }
+                        else{
+                            alert(response.message);
+                        }
+                    });
+                }
+                else{
+                    alert("you can add only User")
+                }
+                
+            }
+            else{
+                alert("you can not add new client")
+            }
+        }
+        
+    }
+    else{
+            alert("one of the argument wrong")
+    }
+// finishLoding()
+setTimeout(stopLoading11,1000);
+
+}
+function loading11() {
+  var element, name, arr;
+  element = document.getElementById("loader11");
+  name = "hidden1";
+  arr = element.className.split(" ");
+  if (arr.indexOf(name) == -1) {
+    element.className += " " + name;
+  }
+}
+function stopLoading11() {
+    var element, name, arr;
+  element = document.getElementById("loader11");
+  name = "hidden1";
+  arr = element.className.split(" ");
+  element.className=arr[0]
+}
+function updateUser(){
+         
+    let el=document.getElementById("inputFirstName1");
+    let fname= el.value;
+    el=document.getElementById("inputLastName1");
+    let lname= el.value;
+    el=document.getElementById("inputAddress1");
+    let address= el.value;
+    el=document.getElementById("inputPhoneNumber1");
+    let phoneNumber= el.value;
+    el=document.getElementById("inputEmail1");
+    let email= el.value;
+    el=document.getElementById("inputPws1");
+    let password= el.value;
+    el=document.getElementById("inputConfirmPws1");
+    let confirm= el.value;
+    el=document.getElementById("inputType1");
+    let inputType=el.value;
+    el=document.getElementById("inputBranch1");
+    let branch =el.value;
+    el=document.getElementById("inputActivated1");
+    let status =el.checked;
+    if(status){
+        status="1";
+    }
+    else{
+        status="0";
+    }
+    if(validate(fname)&&validate(lname)&&validate(branch)&&validate(address)&&validate(phoneNumber)&&validate(inputType)&&validate(email)&&isEmail(email)&&validate(password)&&validate(confirm)&&password==confirm){
+        let data = JSON.parse(sessionStorage.getItem("user"));
+        let type = data['type'];
+        if(type=="menager"){
+            
+            const ans={fname,lname,address,phoneNumber,email,password,inputType,branch,status};
+            const options = {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(ans)
+            };
+            fetch("/updetClient",options) .then((response)=>response.json()) .then(response=>{
+                if (response.data =="true"){
+                    alert(response.message);
+                }
+                else{
+                    alert(response.message);
+                }
+            });
+           
+            
+        }
+        else{
+            alert("only manager can update!")
+        }
+        
+    }
+    else{
+            alert("one of the argumant wrong")
+    }
+
+}
+function deleteUser(){
+    const el=document.getElementById("inputEmail2");
+    let email= el.value;
+    let data = JSON.parse(sessionStorage.getItem("user"));
+    let type = data['type'];
+    if(type=="menager")
+    {
+        if(validate(email)&&isEmail(email))
+        {
+                const ans={email};
+                const options = {
+                    method: 'POST',
+                    headers: {
+                    'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(ans)
+                };
+            fetch("/deleteClient",options) .then((response)=>response.json()) .then(response=>{
+                    if (response.data =="true"){
+                        alert(response.message);
+                    }
+                    else{
+                        alert(response.message);
+                    }
+                });
+
+        }
+    }
+    else{
+            alert("you can not delete client")
+        }
+
+}
+
+function checkPrioritys()
+{
+    let data = JSON.parse(sessionStorage.getItem("user"));
+       if(data){
+       var type=data["type"];
+       if(type=="menager"){
+        let el=document.getElementById("inputType");
+        el.disabled=false;
+         el=document.getElementById("inputType1");
+        el.disabled=false;
+         el=document.getElementById("inputBranch1");
+        el.disabled=false;
+         el=document.getElementById("inputBranch");
+        el.disabled=false;
+        }
+    else{
+        let el=document.getElementById("inputType");
+        el.disabled=true; 
+         el=document.getElementById("inputType1");
+        el.disabled=true; 
+        el=document.getElementById("inputBranch1");
+        el.disabled=true;
+         el=document.getElementById("inputBranch");
+        el.disabled=true;      
+    }}
+}
+
+function makeList()
+{
+    fetch("/users.json")
+            .then(response => response.json())
+            .then(json => {
+                // the json data. (you can change the values for output.)
+                let data = JSON.parse(sessionStorage.getItem("flag"));
+       if(!data){
+                const obj={'flag':"true" }
+                sessionStorage.setItem('flag',JSON.stringify(obj));
+                list=json;
+                list=list.map(({email})=>(email));
+                let el=document.getElementById("inputEmail1");
+                let opList=el.options;
+                list.forEach(op=>
+                opList.add(new Option(op,op,true)))
+                // for(var item in list)
+                // {
+                //     $('<option value="'+item+'">'+list[item]+'</option>').appendTo('#inputEmail1');
+                // }
+            }
+                
+});
+}
+
+function bringInfo()
+{
+    fetch("/users.json")
+            .then(response => response.json())
+            .then(json => {
+                list=json;
+                let em=document.getElementById("inputEmail1").value;
+                let obj=list.filter(item=>{return item.email==em});
+    let el=document.getElementById("inputFirstName1");
+    el.value= obj[0]["first-name"];
+    el=document.getElementById("inputLastName1");
+    el.value= obj[0]["last-name"];
+    el=document.getElementById("inputAddress1");
+    el.value= obj[0]["address"];
+    el=document.getElementById("inputPhoneNumber1");
+    el.value= obj[0]["phone-number"];
+    el=document.getElementById("inputPws1");
+    el.value= obj[0]["password"];
+    el=document.getElementById("inputConfirmPws1");
+    el.value= obj[0]["password"];
+    el=document.getElementById("inputType1");
+    let workers=["client","worker","menager"];
+    
+    for(var i in workers)
+    {
+        
+        if(workers[i]==obj[0]["type"])
+        {
+            el.selectedIndex= i;
+            if(workers[i]=="worker"||workers[i]=="menager")
+            {
+                el=document.getElementById("inputBranch1");
+                el.disabled=false;
+                fetch("/branchMeng.json")
+     .then(response => response.json())
+     .then(json => {
+        let data = JSON.parse(sessionStorage.getItem("flagBranches"));
+       if(!data){
+                const obj={'flagBranches':"true" }
+                sessionStorage.setItem('flagBranches',JSON.stringify(obj));
+         lst=json;
+         lst=lst.map(({branchnumber})=>(branchnumber));
+                let opList=el.options;
+                lst.forEach(op=>
+                opList.add(new Option(op,op,true)));
+       }
+                for(var j in lst)
+                {
+                    if(lst[j]==obj[0]["branchnumber"])
+                    {
+                        el.selectedIndex= i;
+                    }
+                }
+            });
+        }
+        else{
+            el=document.getElementById("inputBranch1");
+            el.disabled=true;
+            el.selectedIndex= 0;
+        }
+        
+    }
+}
+        });
+    }
+function branchClarity(s)
+{
+    let el=document.getElementById("inputType"+s);
+    if(el.value=="client")
+    {
+        el=document.getElementById("inputBranch"+s);
+            el.disabled=true;
+            el.selectedIndex= 0;
+    }
+    else
+    {
+        el=document.getElementById("inputBranch"+s);
+            el.disabled=false;
+        fetch("/branchMeng.json")
+     .then(response => response.json())
+     .then(json => {
+        let data = JSON.parse(sessionStorage.getItem("flagBranches"+s));
+       if(!data){
+           let flag="flagBranches"+s
+                const obj={flag:"true" }
+                sessionStorage.setItem(flag,JSON.stringify(obj));
+         lst=json;
+         lst=lst.map(({branchnumber})=>(branchnumber));
+                let opList=el.options;
+                lst.forEach(op=>
+                opList.add(new Option(op,op,true)));
+       }
+               
+            });     
+    }
+}
+    
+function error(){
+    
+}
+function loding() {
+
+    let el = document.getElementById("loader11");
+    el.style.animation="none";
+    el.style.display = "block";
+    el = document.getElementById("loding1");
+    el.style.display = "block";
+    el = document.getElementById("loding2");
+    el.style.display = "block"; 
+    
+    console.log("im here!!!!")  
+}
+function finishLoding() {
+    let el = document.getElementById("loader11");
+    el.style.animation = "fadeout 2s";
+    el.style.display="none";
+    el = document.getElementById("loding1");
+    el.style.display = "none";
+    el = document.getElementById("loding2");
+    el.style.display = "none";   
+}
+</script>
+</html>

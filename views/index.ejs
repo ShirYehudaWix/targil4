@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!-- views/index.ejs -->
+<html lang="en">
+<head>
+
+
+
+
+
+<!--    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>-->
+
+
+<!--    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">-->
+<!--    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.11.0/css/all.css">-->
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="contactop/images/icons/favicon.ico"/>
+    <!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+    <!--<link rel="stylesheet" type="text/css" href="contactop/vendor/bootstrap/css/bootstrap.min.css">-->
+    <!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+    <link rel="stylesheet" type="text/css" href="contactop/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+    <link rel="stylesheet" type="text/css" href="contactop/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+    <link rel="stylesheet" type="text/css" href="contactop/vendor/animate/animate.css">
+    <!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+    <link rel="stylesheet" type="text/css" href="contactop/vendor/css-hamburgers/hamburgers.min.css">
+    <!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+    <link rel="stylesheet" type="text/css" href="contactop/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="contactop/vendor/select2/select2.min.css">
+    <!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+    <link rel="stylesheet" type="text/css" href="contactop/vendor/daterangepicker/daterangepicker.css">
+    <!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+    <link rel="stylesheet" type="text/css" href="contactop/css/util.css">
+    <link rel="stylesheet" type="text/css" href="contactop/css/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style/our_css.css" type="text/css">
+
+    <% include partials/head %>
+</head>
+<header>
+    <% include partials/header %>
+</header>
+<body class="container" onload="loading()">
+
+   <div id="middle-page" >
+
+   </div>
+
+
+   </body>
+    <footer style="position: fixed">
+        <% include partials/footer %>
+    </footer>
+
+</html>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<script>
+
+    // function aboutUs(){
+    //     $(document).ready(function(){
+    //         $("#middle-page").load("aboutUs.html");
+    //     });
+    //
+    // }
+   function loading()
+   {
+       var addr=window.location.href;
+       var lst=addr.split("#");
+       var funcs=["aboutUs","contactUs","userMng","branchMng","flowerCatelog"];
+       let data = JSON.parse(sessionStorage.getItem("flag"));
+       if(data){
+        sessionStorage.removeItem("flag");
+        }
+       data = JSON.parse(sessionStorage.getItem("flagBranches"));
+       if(data){
+        sessionStorage.removeItem("flagBranches");
+        }
+       if(lst.length>1)
+       {
+           for (i =0;i<lst.length;i++)
+           {
+               if(funcs.includes(lst[i]))
+               {
+
+                   // eval(${i})();
+                   window[lst[i]]();
+               }
+           }
+       }
+       if(sessionStorage.getItem("user"))
+       {
+           visibility_on_login();
+       }
+   }
+
+   function add_name_to_qs()
+   {
+       let data = JSON.parse(sessionStorage.getItem("user"));
+       if(data){
+       var addr=window.location.href;
+       var lst=addr.split("#");
+       var first_name=data["fname"];
+       var lst_first=first_name.split(" ");
+       var last_name=data["lname"];
+       var lst_last=last_name.split(" ");
+       if(lst_first.length>1)
+       {
+           first_name=lst_first[0];
+           for(var i=1;i<lst_first.length;i++)
+           {
+               first_name+="-"+lst_first[i];
+           }
+       }
+       if(lst_last.length>1)
+       {
+           last_name=lst_last[0];
+           for(var i=1;i<lst_last.length;i++)
+           {
+               last_name+="-"+lst_last[i];
+           }
+       }
+       if(lst.length==1 || !lst.includes(first_name))
+       {
+
+           window.location.href+="#"+first_name+"#"+last_name;
+       }}
+   }
+
+</script>

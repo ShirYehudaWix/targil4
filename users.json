@@ -1,0 +1,197 @@
+[
+  {
+    "type": "client",
+    "first-name": "shara",
+    "last-name": "choen",
+    "address": "ben-yehuda 12 Tel-aviv",
+    "phone-number": "0549839856",
+    "email": "sharaCH@gmail.com",
+    "password": "$2b$10$T4N0vcOYoyTOFxdREYi2dOri2AwCJf.kSmKIiT.T6j.UckabrHiZO",
+    "status": "1"
+  },
+ 
+  {
+    "type": "client",
+    "first-name": "binyamin",
+    "last-name": "netanyahu",
+    "address": "balfor 10 Jerusalem",
+    "phone-number": "0553456702",
+    "email": "binyaminN@gmail.com",
+    "password": "$2b$10$6NvXqf0LhZJrFvq49UOOIOTPSNBpRqZ3CCFxjl2TD.oWYQCPP6S/2",
+    "status": "1"
+  },
+  {
+    "type": "worker",
+    "branchnumber": "000001",
+    "first-name": "shir",
+    "last-name": "yehuda",
+    "address": "kosovki 4/9 jerusalem",
+    "phone-number": "0547827789",
+    "salary-per-hour": "80",
+    "beginning-work-date": "11/11/11",
+    "email": "shirYehuda@gmail.com",
+    "password": "$2b$10$FcZwkl/8G68wMctqSsCqaumsuu9T5b.n6wVZEOFwpdgyiNUvt5Dg6",
+    "status": "1"
+  },
+  {
+    "branchnumber": "000002",
+    "first-name": "israel",
+    "last-name": "israeli",
+    "address": "israel 49 emek israel",
+    "phone-number": "050877656",
+    "salary-per-hour": "30",
+    "beginning-work-date": "30/09/16",
+    "email": "israelIs@gmail.com",
+    "password": "$2b$10$a8i55nyeJIGtzJVLD29v..SVmEyxGpubXjvb5kiP8tzuJW4jy0hpO",
+    "type": "worker",
+    "status": "1"
+  },
+  {
+    "type": "menager",
+    "branchnumber": "000001",
+    "first-name": "hodaya rachel",
+    "last-name": "bismut",
+    "address": "yehosua ben nun 4 givat zeev",
+    "phone-number": "0535305342",
+    "salary-per-hour": "180",
+    "beginning-work-date": "11/11/10",
+    "email": "hodayaRB@gmail.com",
+    "password": "$2b$10$CML..yzQKGl1Uab.cmIlDunwC3zjx50YiAoYV0UdvNXeLRfYDx19.",
+    "status": "1"
+  },
+  {
+    "type": "client",
+    "first-name": "barak",
+    "last-name": "gonen",
+    "address": "haprahim 12 raanana",
+    "phone-number": "0523456543",
+    "salary-per-hour": "29",
+    "beginning-work-date": "11/11/2020",
+    "email": "barakG@gmail.com",
+    "password": "$2b$10$0A7muZnGPS8alwNcY5CQweW77jmJMpk6ZnnYXAz/glc9UPfz5LnuS",
+    "status": "1"
+  },
+  
+  {
+    "type": "client",
+    "first-name": "mika",
+    "last-name": "karni",
+    "address": "sol 555 bat yam",
+    "phone-number": "0545454545",
+    "email": "mika@gmail.com",
+    "password": "$2b$10$SW65X08Ebkl.CUQFAUxiSe.ek8vIZuHYNuB8A/kWXg5ip2UwhbO4y",
+    "status": "1"
+  },
+  {
+    "type": "worker",
+    "first-name": "shlomo",
+    "last-name": "artzi",
+    "address": "guitar 54",
+    "phone-number": "0545454545",
+    "email": "shlo@gmail.com",
+    "password": "$2b$10$.ra47ARnrvibmGeyfvH6Ae4cOJ927sDhTW6BbHiqACtFIfSQj9luK",
+    "status": "1"
+  },
+  {
+    "type": "User",
+    "first-name": "michal",
+    "last-name": "nagarin",
+    "address": "hatapuz 50 givataim",
+    "phone-number": "0523434343",
+    "email": "mich@gmail.com",
+    "password": "$2b$10$x2Fh898tHP6JtSk9E1mJmuBUGGeFeGSB5KKOUlqZxzs9ZIjFUY6qS",
+    "status": "1"
+  },
+  {
+    "type": "worker",
+    "first-name": "keren",
+    "last-name": "peles",
+    "address": "meshulash 33 naharia",
+    "phone-number": "0534343232",
+    "email": "peles@gmail.com",
+    "password": "$2b$10$K5cr5OHDf2rL6pmUEfLkKeAPMrPw9t37VLgXykNjKDAG50F6p.vxq",
+    "branchnumber": "000001",
+    "status": "1"
+  },
+  {
+    "type": "client",
+    "first-name": "dor",
+    "last-name": "kiplin",
+    "address": "dog 5 tel aviv",
+    "phone-number": "03434343432",
+    "email": "dorrfrfrf@gmail.com",
+    "password": "$2b$10$p9QuU7udglQLUUxZvVcCN.yv0kjJm5m.wX1/CnF2yaIFZZZzp3QVS",
+    "status": "1"
+  },
+  {
+    "type": "worker",
+    "first-name": "miri",
+    "last-name": "mesika",
+    "address": "eliyahu 90 rehovot",
+    "phone-number": "054343434343",
+    "email": "mirifrf@gmail.com",
+    "password": "$2b$10$kPFhcm4UBS2PiZusXK6HPeMqT3CzXajwVavH9pqlA/.a6wK6Bt06K",
+    "branchnumber": "000004",
+    "status": "1"
+  },
+  {
+    "type": "client",
+    "first-name": "yoram",
+    "last-name": "teharlev",
+    "address": "calanit 14 jerusalem",
+    "phone-number": "0534567890",
+    "email": "yoram1111@gmail.com",
+    "password": "$2b$10$aG2I52.fbJjFPn.NHZMVDOjfYripDnqqhSV5ebobMdFFJY6uNbIZ6",
+    "status": "1"
+  },
+  {
+    "type": "client",
+    "first-name": "tomi",
+    "last-name": "hilfiger",
+    "address": "avokade 32 beer yaakov",
+    "phone-number": "0523434343",
+    "email": "rfrrrrfrr@gmail.com",
+    "password": "$2b$10$UZQOP0p3iPv5nrA1CTJ4FeduekDuoOW9omc17tuoX71VIElKANLg6",
+    "status": "1"
+  },
+  {
+    "type": "client",
+    "first-name": "shiri",
+    "last-name": "mimon",
+    "address": "givati 99 heifa",
+    "phone-number": "05055545454",
+    "email": "shiri@gmail.com",
+    "password": "$2b$10$cHnFRA/yAi0ZPF5a4VUauuYgWLdD1yJtFml1I1qPiOrZPzPhB4ZGu",
+    "status": "1"
+  },
+  {
+    "type": "client",
+    "first-name": "yuval",
+    "last-name": "shamla",
+    "address": "herzel 10 herzelia",
+    "phone-number": "05065655566",
+    "email": "strong@gmail.com",
+    "password": "$2b$10$fNDBQHqcdCYrYupp.N58FOYHuIo9rr36HmVHGYE.kbxdUjDYGIVny",
+    "status": "1"
+  },
+  {
+    "type": "client",
+    "first-name": "netanel",
+    "last-name": "halevi",
+    "address": "hatayas 37 rosh haain",
+    "phone-number": "0525244584",
+    "email": "ntnel@walla.com",
+    "password": "$2b$10$iKy/bLEW94K/LXcdB2hybu9B1INttOmUDA8dsKvmbbOnlemyS0Kwi",
+    "status": "1"
+  },
+  {
+    "type": "client",
+    "first-name": "Shir",
+    "last-name": "Yehuda",
+    "address": "Pardes meshutaf 82",
+    "phone-number": "0547827789",
+    "email": "hoda44yaRB@gmail.com",
+    "password": "$2b$10$aoEaijFM6llEpU2kztumD.JbiK0e8.hx7Z/r6dvfqhHC4rPm/1M3q",
+    "status": "1"
+  }
+]

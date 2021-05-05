@@ -1,0 +1,303 @@
+
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="124747484747-32r6rss2irqfktd5pkca9onqv2e2k27j.apps.googleusercontent.com">
+
+
+    <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+<style>
+    li{
+        margin: 10px  10px 0px 0px;
+    }
+</style>
+</head>
+
+<body translate="no" style="display: block" >
+  <nav class="navbar navbar-inverse  navbar-fixed-top"  role="navigation" style="background-color: pink; border-radius: 0px 0px 7px 7px ; border: 0px solid transparent"  >
+                               
+            <div class="navbar-header"  >
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><img class="logo" src="images/logo.jpeg" ></li>
+
+                    <li class="active"><a style="background-color: transparent;" href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+                    <li class="dropdown" id="drop" style="display:none">
+                        <a href="index.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
+                      <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Categries <span class="caret"></span></a>
+                        <ul class="dropdown-menu" >
+                            <li><a onclick="flowerCatelog()" >All</a></li>
+                            <li><a href="contactus.html#">Boukets</a></li>
+                            <li><a href="contactus.html#" class="glyphicon glyphicon-gift">Gifts</a></li>
+                            <li><a href="contactus.html#" class="glyphicon glyphicon-heart">Weddings</a></li>
+                            <li><a href="contactus.html#">Flower Pots</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">Others</li>
+                            <li><a href="contactus.html#">Gardening Tools</a></li>
+                           
+                        </ul>
+                    </li>
+                   
+                    <li style="display:none" id="b-meng"><a onclick="branchMng()"><span class="glyphicon glyphicon-briefcase" ></span> Branches Menagement</a></li>
+                    <li style="display:none" id="u-meng"><a onclick="userMng()"><span class="glyphicon glyphicon-user"></span> User Menagement</a></li>
+                    <li><a onclick="aboutUs()" >
+                      <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> About Us</a></li>
+                      <li><a id="contact" onclick="contactUs()" ><span class="glyphicon glyphicon-envelope"></span> Contact Us</a></li>
+<!--                    <li style="float: right"><a data-toggle="modal" data-target="#loginModal" ><span class="glyphicon glyphicon-log-in"  ></span> login</a></li>-->
+                </ul>
+               <ul class="nav navbar-nav navbar-right"  style="padding: 0px 15px">
+                   <a href="<GENERATED_GOOGLE_URL>">Login with Google</a>
+                   <li><a data-toggle="modal" data-target="#loginModal" id="login"><span class="glyphicon glyphicon-log-in"   ></span> login</a></li>
+                </ul>
+               <ul class="nav navbar-nav navbar-right"  style="padding: 0px 15px">
+                <li id="registeredName"></li>
+                   <li ><a  style="display: none" id="logout" onclick="logout()"><span class="glyphicon glyphicon-log-out"   ></span> log out</a></li>
+                </ul>
+
+
+       
+            </div>
+        </div>
+   </nav>
+
+
+  
+
+    
+    <div id="loginModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"> &times;</button>
+                <h4>Login</h4>
+            </div>
+            <div class="modal-body">
+              <!--action="login" method="POST"-->
+                   <form class="form-inline" onsubmit="return false" >
+                   <div class="form-group">
+                       <label class="sr-only" for="email">Email</label>
+                       <input type="text" class="form-control input-sm" placeholder="Email" id="email" name="email">
+                       </div>
+                        <div class="form-group">  
+                          
+                           <label class="sr-only" for="password">Password</label>
+                                     <input type="password" class="form-control input-sm" placeholder="Password" id="password" name="password"></div>
+                       <div class="checkbox">
+                       <label>
+                       <input type="checkbox"> Remember me
+                       </label>
+                         </div>
+                    
+                      
+                        
+                       <button type="submit" class="btn btn-info btn-xs" data-dismiss="modal" onclick="login()">Sign in</button>
+                       <button type="button" class="btn btn-default btn-xs" data-dismiss="modal">Cancel</button> 
+                    
+                   
+                     
+               
+                    </form>
+            </div>
+        </div>
+        </div>
+    </div>
+   
+   
+  
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+  <script>
+   
+
+
+
+      function login() {
+        let email=document.getElementById("email");
+         email = email.value;
+        let emal = email.value;
+        let password=document.getElementById("password");
+         password=password.value;
+        let pass=password.value;
+        if(email&&password){
+          const ans={email,password};
+          const options = {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(ans)
+          };
+          fetch("/login",options) .then((response)=>response.json()) .then(response=>{
+            if (response.data =="true")
+            {
+              type=response.type;
+              first_name=response.first_name;
+              last_name=response.last_name;
+              const obj={'email':emal, 'password':pass,'type':type,'fname':first_name,'lname':last_name }
+              sessionStorage.setItem('user',JSON.stringify(obj));
+              visibility_on_login();
+
+
+                //   let data = JSON.parse(sessionStorage.getItem('user'));
+            //   let strname = last_name +" "+ first_name;
+            //   const queryString = require('query-string');
+            //   queryString.stringifyUrl({
+            //      url: '/',
+            //       query: {
+            //           name: strname
+            //       }
+            //   });
+            
+            
+          
+              //=> 'https://foo.bar?top=foo#bar'
+              
+            }
+            else{
+              alert("your email or password are not correct");
+            }
+          });
+        }
+          else{
+            alert("missing email or password")
+          }
+            
+          
+      }
+      function logout(){
+          alert("logout succssed");
+          window.location.replace("/");
+          let el=document.getElementById("login");
+              el.style.display = "block";
+              el=document.getElementById("logout");
+              el.style.display = "none";
+              el=document.getElementById("drop");
+              el.style.display = "none";
+               el=document.getElementById("b-meng");
+              el.style.display = "none";
+              el=document.getElementById("u-meng");
+              el.style.display = "none";
+              sessionStorage.removeItem("user");
+             
+      }
+
+function aboutUs(){
+
+    $(document).ready(function(){
+        $("#middle-page").load("about.ejs");
+    });
+    var addr=window.location.href;
+    var lst=addr.split("#")
+    if(lst.length==1 || !lst.includes("aboutUs"))
+    {
+        window.location.href="/#"+"aboutUs";
+        add_name_to_qs();
+    }
+    }
+function contactUs() {
+    $(document).ready(function () {
+        $("#middle-page").load("contactUs.ejs");
+    });
+    var addr = window.location.href;
+    var lst = addr.split("#")
+    if (lst.length == 1 || !lst.includes("contactUs")) {
+        window.location.href = "/#" + "contactUs";
+        add_name_to_qs();
+    }
+}
+function userMng() {
+    $(document).ready(function () {
+        $("#middle-page").load("userMng.ejs");
+    });
+    var addr=window.location.href;
+    var lst=addr.split("#")
+    if(lst.length==1 || !lst.includes("userMng"))
+    {
+        window.location.href="/#"+"userMng";
+        add_name_to_qs();
+    }
+}
+
+function flowerCatelog() {
+    $(document).ready(function () {
+        $("#middle-page").load("flowerCatelog.ejs");
+    });
+    var addr = window.location.href;
+    var lst = addr.split("#")
+    if (lst.length == 1 || !lst.includes("flowerCatelog")) {
+        window.location.href = "/#" + "flowerCatelog";
+        add_name_to_qs();
+    }
+  }
+  function branchMng() {
+    $(document).ready(function () {
+        $("#middle-page").load("branchMng.ejs");
+    });
+    var addr = window.location.href;
+    var lst = addr.split("#")
+    if (lst.length == 1 || !lst.includes("branchMng")) {
+        window.location.href = "/#" + "branchMng";
+        add_name_to_qs();
+    }
+  }
+function visibility_on_login()
+{
+    let el=document.getElementById("login");
+    el.style.display = "none";
+    el=document.getElementById("logout");
+    el.style.display = "block";
+    el=document.getElementById("drop");
+    el.style.display = "block";
+    let data = JSON.parse(sessionStorage.getItem("user"));
+    let type = data['type'];
+
+    if(type=="menager")
+    {
+    el=document.getElementById("b-meng");
+    el.style.display = "block";
+    el=document.getElementById("u-meng");
+    el.style.display = "block";
+    }
+    if(type=="worker")
+    {
+        el=document.getElementById("u-meng");
+        el.style.display = "block";
+    }
+    add_name_to_qs();
+
+
+
+}
+
+
+
+
+
+  </script>
+  
+  
+
+</body>
+
+</html>
